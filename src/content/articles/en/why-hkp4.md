@@ -29,4 +29,4 @@ Half of Hong Kong's story must be argued inward, in Chinese; the other half must
 
 One article a week, rotating through the four lenses. Every piece ends with its sources and a "re-check point" for next week — we grade our own projections, and the scores are public.
 
-If this journal is useful to you, you can support it on [Patreon](https://www.patreon.com/hkp4). It is the only income it takes.
+If this journal is useful to you, you can support it on [Patreon](https://www.patreon.com/c/hkp4). It is the only income it takes.

@@ -29,4 +29,4 @@ p: [prosperity, projection, prospect, potential]
 
 每週一篇,按四個面向輪轉。每篇文章最後會留下資料來源與一個「下週覆核點」——我們對自己的推演打分,公開记分。
 
-如果這份刊物對你有幫助,可以在 [Patreon](https://www.patreon.com/hkp4) 支持我們。這是它存在的唯一收入。
+如果這份刊物對你有幫助,可以在 [Patreon](https://www.patreon.com/c/hkp4) 支持我們。這是它存在的唯一收入。

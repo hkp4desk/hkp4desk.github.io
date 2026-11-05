@@ -4,7 +4,7 @@ export const LOCALES: Locale[] = ["zh", "en"];
 export const site = {
   name: "HKP4",
   url: "https://hkp4.github.io",
-  patreon: "https://www.patreon.com/hkp4",
+  patreon: "https://www.patreon.com/c/hkp4",
   email: "hkp4-desk@proton.me",
   title: {
     zh: "HKP4 · 香港的四個面向",

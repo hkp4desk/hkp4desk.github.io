@@ -55,7 +55,7 @@ const rssSelf = locale === "zh" ? "/rss.xml" : "/en/rss.xml";
     <meta property="og:url" content={site.url + path} />
     <meta name="referrer" content="no-referrer" />
     {autoLang && (
-      <script is:inline>
+      <script is:inline define:vars={{ altLang: switchTarget }}>
         (function () {
           try {
             var c = document.cookie
@@ -69,7 +69,7 @@ const rssSelf = locale === "zh" ? "/rss.xml" : "/en/rss.xml";
                 : "zh";
             var here = location.pathname === "/en" || location.pathname.indexOf("/en/") === 0 ? "en" : "zh";
             if (want !== here) {
-              var alt = "{switchTarget}";
+              var alt = altLang;
               if (alt) location.replace(alt);
             }
           } catch (e) {}
