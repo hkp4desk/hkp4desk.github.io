@@ -1,0 +1,133 @@
+---
+import "../styles/global.css";
+import {
+  site,
+  ui,
+  localize,
+  type Locale,
+  type UIKey,
+} from "../lib/ui";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description?: string;
+  /** 另一语言对应页面的路径;null 表示没有译文(隐藏切换按钮的精确跳转,退回首面) */
+  altHref?: string | null;
+  /** 当前无语言前缀的导航路径,用于高亮当前栏目 */
+  nav?: "home" | "articles" | "about" | "donate";
+  /** 是否允许根据浏览器语言自动跳转(文章页若无译文应关闭) */
+  autoLang?: boolean;
+}
+
+const {
+  locale,
+  title,
+  description = site.tagline[locale],
+  altHref = null,
+  nav = "",
+  autoLang = true,
+} = Astro.props;
+
+const t = (k: UIKey) => ui[locale][k];
+const path = Astro.url.pathname;
+const fullTitle = title === site.title[locale] ? title : `${title} · ${site.name}`;
+const homeHref = localize(locale, "/");
+const switchTarget = altHref ?? localize(locale === "zh" ? "en" : "zh", "/");
+const switchLang = locale === "zh" ? "en" : "zh";
+const rssSelf = locale === "zh" ? "/rss.xml" : "/en/rss.xml";
+---
+
+<!doctype html>
+<html lang={locale === "zh" ? "zh-Hant-HK" : "en"}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={site.url + path} />
+    {altHref && <link rel="alternate" hreflang={switchLang} href={site.url + altHref} />}
+    <link rel="alternate" type="application/rss+xml" title={site.title[locale]} href={rssSelf} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site.url + path} />
+    <meta name="referrer" content="no-referrer" />
+    {autoLang && (
+      <script is:inline>
+        (function () {
+          try {
+            var c = document.cookie
+              .split("; ")
+              .find(function (x) { return x.indexOf("hkp4_lang=") === 0; });
+            if (c) return; // 用户已明确选择过语言,不再自动跳转
+            var want =
+              navigator.language && navigator.language.toLowerCase().charAt(2) !== "h" &&
+              navigator.language.toLowerCase().indexOf("zh") !== 0
+                ? "en"
+                : "zh";
+            var here = location.pathname === "/en" || location.pathname.indexOf("/en/") === 0 ? "en" : "zh";
+            if (want !== here) {
+              var alt = "{switchTarget}";
+              if (alt) location.replace(alt);
+            }
+          } catch (e) {}
+        })();
+      </script>
+    )}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={homeHref}>
+          HK<span class="dot">P</span>4
+          <span class="brand-sub">香港的四個面向 · Four Lenses on Hong Kong</span>
+        </a>
+        <nav class="site-nav">
+          <a href={localize(locale, "/")} class:list={[nav === "home" && "current"]}>{t("nav_home")}</a>
+          <a href={localize(locale, "/articles/")} class:list={[nav === "articles" && "current"]}>{t("nav_articles")}</a>
+          <a href={localize(locale, "/about/")} class:list={[nav === "about" && "current"]}>{t("nav_about")}</a>
+          <a href={localize(locale, "/donate/")} class:list={[nav === "donate" && "current"]}>{t("nav_donate")}</a>
+          <a class="lang-switch" href={switchTarget} rel="alternate"
+             onclick={`document.cookie='hkp4_lang=${switchLang};path=/;max-age=31536000;SameSite=Lax'`}>{t("lang_label")}</a>
+          <a class="btn-support" href={site.patreon} target="_blank" rel="noopener noreferrer">{t("support_short")}</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <h4>HKP4</h4>
+            <p style="margin:0">{site.tagline.zh}</p>
+            <p style="margin:0.3rem 0 0">{site.tagline.en}</p>
+          </div>
+          <div>
+            <h4>{t("footer_about")}</h4>
+            <ul>
+              <li><a href={localize(locale, "/about/")}>{t("nav_about")}</a></li>
+              <li><a href={localize(locale, "/donate/")}>{t("nav_donate")}</a></li>
+              <li><a href={site.patreon} target="_blank" rel="noopener noreferrer">Patreon</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>{t("footer_follow")}</h4>
+            <ul>
+              <li><a href="/rss.xml">繁中 RSS</a></li>
+              <li><a href="/en/rss.xml">English RSS</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2026 {site.author.zh} · {site.author.en} — {t("rights")}
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

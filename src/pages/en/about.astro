@@ -1,0 +1,54 @@
+---
+import Layout from "../../components/Layout.astro";
+import SupportBox from "../../components/SupportBox.astro";
+import { site } from "../../lib/ui";
+---
+
+<Layout locale="en" title="About · HKP4" nav="about">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>About HKP4</h1>
+      <p class="sub">關於 HKP4 — 一份匿名的香港觀察刊物</p>
+    </div>
+
+    <div class="prose" style="max-width:44rem">
+      <h2>What HKP4 is</h2>
+      <p>
+        HKP4 stands for four lenses on the city: <strong>Prosperity 繁榮</strong>,
+        <strong>Projection 推演</strong>, <strong>Prospect 前景</strong> and
+        <strong>Potential 潛能</strong>. This journal publishes regular commentary on
+        Hong Kong's development through these four lenses, with every article appearing
+        in both Traditional Chinese and English.
+      </p>
+
+      <h2>Why we are anonymous</h2>
+      <p>
+        This site is run anonymously as "The HKP4 Desk". We believe opinions on public
+        affairs should be judged on their content, not on the identity, profession or
+        interests of the speaker. Anonymity is also a discipline: we are allowed no
+        authority except that of the argument.
+      </p>
+      <p>
+        One boundary we owe readers honestly: the site is anonymous to <em>readers</em>,
+        not to its infrastructure — GitHub and Patreon know who runs it, as any platform
+        that lawfully handles money must. The rule we keep is that nothing published
+        ever references the private identity, and the private identity never references this site.
+      </p>
+
+      <h2>Authorship &amp; reuse</h2>
+      <p>
+        Written in spare time by one author, unaffiliated with any institution, and
+        accepting no funding that comes attached to a viewpoint. Articles may be freely
+        reposted with attribution and full text intact.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Tips, critiques and submissions: <a href={`mailto:${site.email}`}>{site.email}</a>
+        (please do not ask us to verify our identity).
+      </p>
+
+      <SupportBox locale="en" />
+    </div>
+  </div>
+</Layout>

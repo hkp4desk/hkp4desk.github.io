@@ -1,0 +1,47 @@
+---
+import Layout from "../components/Layout.astro";
+import { site } from "../lib/ui";
+
+const crypto = [
+  { name: "BTC（Bitcoin）", addr: "YOUR-BITCOIN-ADDRESS" },
+  { name: "USDT（TRC-20）", addr: "YOUR-USDT-TRC20-ADDRESS" },
+  { name: "ETH / USDC（ERC-20）", addr: "YOUR-ETHEREUM-ADDRESS" },
+];
+---
+
+<Layout locale="zh" title="打賞支持 · HKP4" nav="donate">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>支持 HKP4</h1>
+      <p class="sub">Support HKP4</p>
+    </div>
+
+    <div class="prose" style="max-width:44rem">
+      <p>
+        HKP4 沒有機構資助、沒有廣告,全部文章永久免費公開。寫一個面向、查資料、
+        再譯成英文,一篇大約要花掉十幾個小時——你的支持就是這些小時的來源。
+      </p>
+
+      <h2>方式一:Patreon 按月資助(推薦)</h2>
+      <p>
+        <a href={site.patreon} target="_blank" rel="noopener noreferrer">{site.patreon}</a>
+        —— 每月一杯咖啡的金額起,可隨時取消。會員可提前 48 小時讀到當期文章,
+        並能看到背後的資料與推演過程。Patreon 會要求創作者實名,這是讀者看不到你的唯一一個平台環節。
+      </p>
+
+      <h2>方式二:加密貨幣一次性打賞(完全匿名)</h2>
+      <p>以下地址不收任何個人信息,入金即兩清,無法退款,請自行核對地址。</p>
+      <ul>
+        {crypto.map((c) => (
+          <li>
+            <strong>{c.name}</strong><br />
+            <code>{c.addr}</code>
+          </li>
+        ))}
+      </ul>
+      <p style="color:var(--ink-faint);font-size:0.85rem">
+        （上線前請把佔位地址換成你自己的錢包地址,並在本地用小額轉賬驗證一次。）
+      </p>
+    </div>
+  </div>
+</Layout>

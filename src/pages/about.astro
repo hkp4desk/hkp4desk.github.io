@@ -1,0 +1,49 @@
+---
+import Layout from "../components/Layout.astro";
+import SupportBox from "../components/SupportBox.astro";
+import { site, localize } from "../lib/ui";
+---
+
+<Layout locale="zh" title="關於 · HKP4" nav="about">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>關於 HKP4</h1>
+      <p class="sub">About HKP4 — an anonymous journal on Hong Kong</p>
+    </div>
+
+    <div class="prose" style="max-width:44rem">
+      <h2>HKP4 是什麼</h2>
+      <p>
+        HKP4 是四個面向的首字母:<strong>繁榮 Prosperity</strong>、<strong>推演 Projection</strong>、
+        <strong>前景 Prospect</strong>、<strong>潛能 Potential</strong>。
+        本刊圍繞這四個透鏡,定期發表對香港發展的觀察與觀點——每個面向一個欄目,文章均以繁中和英文同時刊出。
+      </p>
+
+      <h2>我們為什麼匿名</h2>
+      <p>
+        本站以「HKP4 編輯部」名義匿名運營。我們認為,對公共議題的意見應當以其內容本身接受檢驗,
+        而不是發言者的身份、職業或利害關係。匿名同時是一種自我約束:我們不能倚仗任何身份,
+        只能倚仗論據。
+      </p>
+      <p>
+        需要向讀者坦白的邊界是:本站對<strong>讀者</strong>匿名,但對託管服務商與資助平台
+        (GitHub、Patreon)並非匿名——任何合法收款的平台都需要實名。我們接受的紀律是:
+        公開的一切只與笔名有關,私下的身份與本站永遠互不引用。
+      </p>
+
+      <h2>作者與出處</h2>
+      <p>
+        本刊由一名作者以業餘時間寫作,不隸屬任何機構,不接受任何附帶觀點條件的資助。
+        文章可自由轉載,請保持全文完整並註明出處。
+      </p>
+
+      <h2>聯繫</h2>
+      <p>
+        投稿、線索與批評:<a href={`mailto:${site.email}`}>{site.email}</a>
+        (請勿在郵件中要求核實我們的身份)。
+      </p>
+
+      <SupportBox locale="zh" />
+    </div>
+  </div>
+</Layout>

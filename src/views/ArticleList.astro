@@ -1,0 +1,33 @@
+---
+import Layout from "../components/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { site, ui, type Locale } from "../lib/ui";
+import { getArticles } from "../lib/articles";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = (k: keyof (typeof ui)["zh"]) => ui[locale][k];
+const articles = await getArticles(locale);
+---
+
+<Layout
+  locale={locale}
+  title={`${t("all_articles")} · ${site.name}`}
+  nav="articles"
+>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>{locale === "zh" ? "全部文章" : "All Articles"}</h1>
+      <p class="sub">全部 · 繁中與 English 版本逐篇對照</p>
+    </div>
+    {articles.length > 0 ? (
+      <ul class="art-list">
+        {articles.map((a) => <ArticleCard article={a} locale={locale} />)}
+      </ul>
+    ) : (
+      <p class="empty">{t("empty")}</p>
+    )}
+  </div>
+</Layout>

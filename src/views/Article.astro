@@ -1,0 +1,62 @@
+---
+import Layout from "../components/Layout.astro";
+import SupportBox from "../components/SupportBox.astro";
+import { render } from "astro:content";
+import { fmtDate, localize, otherLocale, site, ui, PS, type Locale } from "../lib/ui";
+import { getArticles, type Article } from "../lib/articles";
+
+interface Props {
+  locale: Locale;
+  article: Article;
+}
+
+const { locale, article } = Astro.props;
+const { entry } = article;
+const d = entry.data;
+const t = (k: keyof (typeof ui)["zh"]) => ui[locale][k];
+const { Content } = await render(entry);
+
+// 找另一语言的译文
+const other = otherLocale(locale);
+const others = await getArticles(other);
+const twin = others.find((a) => a.slug === article.slug);
+const twinPath = twin
+  ? (twin.locale === "en" ? `/en/articles/${twin.slug}/` : `/articles/${twin.slug}/`)
+  : null;
+---
+
+<Layout
+  locale={locale}
+  title={d.title}
+  description={d.description}
+  altHref={twinPath}
+  nav="articles"
+  autoLang={!!twinPath}
+>
+  <article class="article-wrap">
+    <header class="article-head">
+      <div class="meta">
+        <a href={localize(locale, "/articles/")}>{t("back")}</a>
+      </div>
+      <h1>{d.title}</h1>
+      <div class="meta">
+        <time datetime={d.pubDate.toISOString()}>{fmtDate(d.pubDate, locale)}</time>
+        <span>{site.author[locale]}</span>
+        {d.p.map((key) => (
+          <a class="p-tag" href={localize(locale, `/p/${key}/`)}>{PS[key][locale]} {PS[key].en}</a>
+        ))}
+      </div>
+      {twinPath ? (
+        <p class="lang-note"><a href={twinPath}>{t("also_lang")}</a></p>
+      ) : (
+        <p class="lang-note">{locale === "zh" ? ui.zh.no_lang : ui.en.no_lang}</p>
+      )}
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <SupportBox locale={locale} />
+  </article>
+</Layout>

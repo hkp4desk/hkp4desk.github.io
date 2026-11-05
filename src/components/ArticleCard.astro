@@ -1,0 +1,28 @@
+---
+import { fmtDate, localize, ui, PS, type Locale } from "../lib/ui";
+import { articlePath, type Article } from "../lib/articles";
+
+interface Props {
+  article: Article;
+  locale: Locale;
+}
+
+const { article, locale } = Astro.props;
+const { entry } = article;
+const d = entry.data;
+const t = (k: keyof (typeof ui)["zh"]) => ui[locale][k];
+const href = articlePath(article);
+---
+
+<li class="art-item">
+  <div class="meta">
+    <time datetime={d.pubDate.toISOString()}>{fmtDate(d.pubDate, locale)}</time>
+    {d.p.map((key) => (
+      <a class="p-tag" href={localize(locale, `/p/${key}/`)}>
+        {PS[key][locale]} {PS[key].en}
+      </a>
+    ))}
+  </div>
+  <h3><a href={href}>{d.title}</a></h3>
+  {d.description && <p class="desc">{d.description}</p>}
+</li>
