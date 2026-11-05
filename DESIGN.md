@@ -184,11 +184,11 @@ GitHub 免费额度对博客来说绰绰有余。
 
 ## 8. 落地步骤
 
-- [ ] 1. 注册 ProtonMail 专用邮箱,定笔名(HKP4 編輯部?)
-- [ ] 2. 用该邮箱注册新 GitHub 账号(候选名:`hkp4-journal`)
-- [ ] 3. 建仓库 + Astro 双语骨架 + Pages 部署(我来搭)
-- [ ] 4. 首页四个 P 栏目 + About 匿名声明 + Patreon 按钮
-- [ ] 5. 用该邮箱注册 Patreon 页面,定三层会员
+- [x] 1. 注册专用 Proton 邮箱 `hkp4desk@proton.me`,笔名定为「HKP4 編輯部 · The HKP4 Desk」
+- [ ] 2. 注册新 GitHub 账号(目标名 `hkp4`,备选 `hkp4-journal`)
+- [x] 3. 本地建仓库 + Astro 双语骨架完成;Pages 部署等 GitHub 账号
+- [x] 4. 首页四个 P 栏目 + About 匿名声明 + Patreon 按钮
+- [x] 5. Patreon 页面建成(三层会员 + 双语简介),待填法定姓名后发布
 - [ ] 6. 写第一篇文章(中文),我配英文译文,上线
 - [ ] 7. 定更新节奏(建议每周 1 篇,固定星期几发布)
 

@@ -38,11 +38,11 @@ git push -u origin main
 
 ## 上线前必须替换的占位符
 
-| 位置 | 占位符 | 换成 |
-|---|---|---|
-| `src/lib/ui.ts` | `patreon` 链接 | 你的 Patreon 页面地址 |
-| `src/lib/ui.ts` | `email` | 你的 ProtonMail 地址 |
-| `src/pages/donate.astro` + `en/donate.astro` | 三个加密货币地址 | 你的钱包地址(先小额自测) |
+| 位置 | 占位符 | 换成 | 状态 |
+|---|---|---|---|
+| `src/lib/ui.ts` | `patreon` 链接 | `https://www.patreon.com/c/hkp4` | ✅ 已替换 |
+| `src/lib/ui.ts` | `email` | `hkp4desk@proton.me`(公开联系专用号) | ✅ 已替换 |
+| `src/pages/donate.astro` + `en/donate.astro` | 三个加密货币地址 | 你的钱包地址(先小额自测) | ⬜ 待替换 |
 
 ## 匿名纪律(每次发布前过一遍)
 
