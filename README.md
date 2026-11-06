@@ -9,7 +9,8 @@
 1. 用中文写文章:复制 `src/content/articles/zh/why-hkp4.md` 为新的 `.md` 文件(文件名即网址 slug,用小写英文加连字符);
 2. 把中文版翻译成英文,存为**同名文件**放在 `src/content/articles/en/`(同名 = 自动互相关联、自动出现语言切换链接);
 3. `npm run dev` 本地预览 http://localhost:4321;
-4. `git add . && git commit && git push` → GitHub Actions 自动构建上线(约 1 分钟)。
+4. `git add . && git commit && git push`(存档源码);
+5. `npm run deploy` → 构建并推送到 `gh-pages` 分支,约 1 分钟上线。
 
 ### 文章 frontmatter 格式
 
@@ -23,17 +24,21 @@ draft: false      # true = 不发布
 ---
 ```
 
-## 上线步骤(一次性)
+## 上线架构(已完成,2026-11-06)
 
-1. 用专用 ProtonMail 注册 GitHub 账号,用户名 **hkp4**(若被占用,换 `hkp4-journal` 之类,并改 `astro.config.mjs` 里的 `site`);
-2. 新建仓库,**仓库名必须等于 `用户名.github.io`**(如 `hkp4.github.io`),这样 Pages 根路径部署,无需改 base;
-3. 把本目录推上去(见下),GitHub → Settings → Pages → Build and deployment → **Source: GitHub Actions**(工作流文件已备好 `.github/workflows/deploy.yml`);
-4. 打开 `https://hkp4.github.io` 验收。
+- GitHub 账号 `hkp4desk`(邮箱 `hkp4desk@proton.me`),仓库 `hkp4desk.github.io`;
+- Pages 部署方式:**Deploy from a branch → `gh-pages` / root**。
+  (不用 GitHub Actions:`actions/deploy-pages` 在本账号持续 10 分钟超时,branch 部署 <1 分钟,已于 2026-11-06 实测);
+- 推送凭据:仓库专用 deploy key `~/.ssh/hkp4_deploy`(SSH 别名 `github-hkp4`,读写,仅限本仓库);
+- 每次发布:`npm run deploy`。
 
 ```bash
-git init -b main   # 本目录已初始化过则跳过
-git remote add origin git@github.com:hkp4/hkp4.github.io.git
+# 首次搭好时的命令存档
+git init -b main
+git remote add origin git@github-hkp4:hkp4desk/hkp4desk.github.io.git
 git push -u origin main
+npm install -D gh-pages && npm run deploy
+# GitHub → Settings → Pages → Source: Deploy from a branch → gh-pages / (root)
 ```
 
 ## 上线前必须替换的占位符
