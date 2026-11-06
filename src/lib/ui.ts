@@ -3,7 +3,7 @@ export const LOCALES: Locale[] = ["zh", "en"];
 
 export const site = {
   name: "HKP4",
-  url: "https://hkp4.github.io",
+  url: "https://hkp4desk.github.io",
   patreon: "https://www.patreon.com/c/hkp4",
   email: "hkp4desk@proton.me",
   title: {
