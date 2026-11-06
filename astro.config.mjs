@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
-// hkp4.github.io —— 如果 GitHub 账号最终不是 hkp4，改这里即可
+// 站点地址 —— GitHub Pages 用户站,跟随账号名 hkp4desk
 export default defineConfig({
-  site: "https://hkp4.github.io",
+  site: "https://hkp4desk.github.io",
   output: "static",
 });
