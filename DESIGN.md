@@ -188,7 +188,7 @@ GitHub 免费额度对博客来说绰绰有余。
 - [x] 2. 已注册 GitHub 账号 `hkp4desk`(邮箱 `hkp4desk@proton.me`),Pages 地址 `hkp4desk.github.io`
 - [x] 3. 本地建仓库 + Astro 双语骨架完成;Pages 部署等 GitHub 账号
 - [x] 4. 首页四个 P 栏目 + About 匿名声明 + Patreon 按钮
-- [x] 5. Patreon 页面建成(三层会员 + 双语简介),待填法定姓名后发布
+- [x] 5. Patreon 页面已发布(三层会员 + 双语简介 + 红底 P4 头像,头像由 `public/favicon.svg` 矢量渲染)
 - [ ] 6. 写第一篇文章(中文),我配英文译文,上线
 - [ ] 7. 定更新节奏(建议每周 1 篇,固定星期几发布)
 
