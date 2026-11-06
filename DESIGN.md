@@ -185,7 +185,7 @@ GitHub 免费额度对博客来说绰绰有余。
 ## 8. 落地步骤
 
 - [x] 1. 注册专用 Proton 邮箱 `hkp4desk@proton.me`,笔名定为「HKP4 編輯部 · The HKP4 Desk」
-- [ ] 2. 注册新 GitHub 账号(目标名 `hkp4`,备选 `hkp4-journal`)
+- [x] 2. 已注册 GitHub 账号 `hkp4desk`(邮箱 `hkp4desk@proton.me`),Pages 地址 `hkp4desk.github.io`
 - [x] 3. 本地建仓库 + Astro 双语骨架完成;Pages 部署等 GitHub 账号
 - [x] 4. 首页四个 P 栏目 + About 匿名声明 + Patreon 按钮
 - [x] 5. Patreon 页面建成(三层会员 + 双语简介),待填法定姓名后发布
