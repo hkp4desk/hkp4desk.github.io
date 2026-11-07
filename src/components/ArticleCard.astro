@@ -19,7 +19,7 @@ const href = articlePath(article);
     <time datetime={d.pubDate.toISOString()}>{fmtDate(d.pubDate, locale)}</time>
     {d.p.map((key) => (
       <a class="p-tag" href={localize(locale, `/p/${key}/`)}>
-        {PS[key][locale]} {PS[key].en}
+        {PS[key][locale]}{locale === "zh" ? ` ${PS[key].en}` : ""}
       </a>
     ))}
   </div>

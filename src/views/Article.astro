@@ -43,7 +43,7 @@ const twinPath = twin
         <time datetime={d.pubDate.toISOString()}>{fmtDate(d.pubDate, locale)}</time>
         <span>{site.author[locale]}</span>
         {d.p.map((key) => (
-          <a class="p-tag" href={localize(locale, `/p/${key}/`)}>{PS[key][locale]} {PS[key].en}</a>
+          <a class="p-tag" href={localize(locale, `/p/${key}/`)}>{PS[key][locale]}{locale === "zh" ? ` ${PS[key].en}` : ""}</a>
         ))}
       </div>
       {twinPath ? (
