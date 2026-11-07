@@ -168,6 +168,20 @@ h3 {
   margin: 0;
 }
 
+.hero .motto {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+  padding-left: 0.9rem;
+  margin: 0 0 1.1rem;
+  max-width: 42rem;
+}
+
+.site-footer .motto {
+  font-family: var(--serif);
+}
+
 .section-title {
   font-size: 1.25rem;
   margin: 2.5rem 0 1rem;

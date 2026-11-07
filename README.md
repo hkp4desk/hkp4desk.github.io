@@ -6,7 +6,7 @@
 
 ## 日常发布流程
 
-1. 用中文写文章:复制 `src/content/articles/zh/why-hkp4.md` 为新的 `.md` 文件(文件名即网址 slug,用小写英文加连字符);
+1. 用中文写文章:新建 `src/content/articles/zh/<slug>.md`(参考范例 `one-country-two-systems.md`;文件名即网址 slug,用小写英文加连字符);
 2. 把中文版翻译成英文,存为**同名文件**放在 `src/content/articles/en/`(同名 = 自动互相关联、自动出现语言切换链接);
 3. `npm run dev` 本地预览 http://localhost:4321;
 4. `git add . && git commit && git push`(存档源码);

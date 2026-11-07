@@ -18,6 +18,10 @@ export const site = {
     zh: "HKP4 編輯部",
     en: "The HKP4 Desk",
   },
+  motto: {
+    zh: "一國兩制:一國是一切的基礎,港制是發展的空間。",
+    en: "One country, two systems: the one country is the foundation of everything; Hong Kong's system is the space for development.",
+  },
 };
 
 export const ui = {
