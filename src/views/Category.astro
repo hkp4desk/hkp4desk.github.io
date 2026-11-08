@@ -1,0 +1,41 @@
+---
+import Layout from "../components/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import {
+  site,
+  ui,
+  PS,
+  P_ORDER,
+  type Locale,
+  type PKey,
+} from "../lib/ui";
+import { getArticles } from "../lib/articles";
+
+interface Props {
+  locale: Locale;
+  pKey: PKey;
+}
+const { locale, pKey } = Astro.props;
+const p = PS[pKey];
+const idx = P_ORDER.indexOf(pKey) + 1;
+const articles = (await getArticles(locale)).filter((a) =>
+  a.entry.data.p.includes(pKey)
+);
+const pageTitle = `${p.zh} ${p.en} · ${site.name}`;
+---
+
+<Layout locale={locale} title={pageTitle} description={p.desc[locale]} nav="articles">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>{p.zh} <span style="color:var(--ink-faint);font-size:0.7em">{p.en}</span></h1>
+      <p class="sub">P{idx} — {p.desc[locale]}</p>
+    </div>
+    {articles.length > 0 ? (
+      <ul class="art-list">
+        {articles.map((a) => <ArticleCard article={a} locale={locale} />)}
+      </ul>
+    ) : (
+      <p class="empty">{ui[locale].empty}</p>
+    )}
+  </div>
+</Layout>

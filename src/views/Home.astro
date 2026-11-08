@@ -1,0 +1,53 @@
+---
+import Layout from "../components/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { site, ui, localize, P_ORDER, PS, type Locale } from "../lib/ui";
+import { getArticles } from "../lib/articles";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = (k: keyof (typeof ui)["zh"]) => ui[locale][k];
+const articles = await getArticles(locale);
+const latest = articles.slice(0, 5);
+---
+
+<Layout locale={locale} title={site.title[locale]} nav="home">
+  <section class="hero">
+    <div class="wrap">
+      <h1>{locale === "zh" ? "香港的四個面向" : "Four Lenses on Hong Kong"}</h1>
+      <p class="sub">Prosperity · Projection · Prospect · Potential</p>
+      <p class="motto">{site.motto[locale]}</p>
+      <p class="lede">
+        {locale === "zh"
+          ? "一份以事實與邏輯深讀香港的刊物。我們用四個透鏡去看這座城市:它現在的繁榮是真是假,它接下來的路怎麼走,它的前景在哪裡,以及它還沒有被逼出來的潛能。"
+          : "A journal that reads Hong Kong in depth through facts and logic. We look at the city through four lenses: whether its prosperity is real, how its next few years may unfold, where its prospects lie, and the potential it has yet to release."}
+      </p>
+
+      <div class="p-grid">
+        {P_ORDER.map((key, i) => (
+          <a class="p-card" href={localize(locale, `/p/${key}/`)}>
+            <span class="p-key">P{i + 1} · {key.toUpperCase()}</span>
+            <h3>{PS[key].zh} <span class="en">{PS[key].en}</span></h3>
+            <p>{PS[key].desc[locale]}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="section-title">
+      {t("latest")} <span class="en">Latest</span>
+      <a style="margin-left:auto;font-size:0.85rem" href={localize(locale, "/articles/")}>{t("all_articles")} →</a>
+    </h2>
+    {latest.length > 0 ? (
+      <ul class="art-list">
+        {latest.map((a) => <ArticleCard article={a} locale={locale} />)}
+      </ul>
+    ) : (
+      <p class="empty">{t("empty")}</p>
+    )}
+  </section>
+</Layout>
