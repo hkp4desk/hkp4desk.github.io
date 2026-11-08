@@ -1,0 +1,12 @@
+---
+import Category from "../../../views/Category.astro";
+import { P_ORDER } from "../../../lib/ui";
+
+export function getStaticPaths() {
+  return P_ORDER.map((pKey) => ({ params: { p: pKey }, props: { pKey } }));
+}
+
+const { pKey } = Astro.props;
+---
+
+<Category locale="en" pKey={pKey as import("../../../lib/ui").PKey} />

@@ -1,0 +1,18 @@
+---
+import { site, ui, localize, type Locale } from "../lib/ui";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = (k: keyof (typeof ui)["zh"]) => ui[locale][k];
+---
+
+<aside class="support-box">
+  <h2>{t("patreon_pitch_title")}</h2>
+  <p>{t("patreon_pitch_body")}</p>
+  <div class="row">
+    <a class="btn-support" href={site.patreon} target="_blank" rel="noopener noreferrer">{t("support")}</a>
+    <a class="alt" href={localize(locale, "/donate/")}>{t("donate_more")}</a>
+  </div>
+</aside>

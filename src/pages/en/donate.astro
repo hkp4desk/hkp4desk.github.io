@@ -1,0 +1,51 @@
+---
+import Layout from "../../components/Layout.astro";
+import { site } from "../../lib/ui";
+
+const crypto = [
+  { name: "BTC (Bitcoin)", addr: "bc1qkf4fscmlujav2vjpwajx0n9txe3dqyhzuc65mq" },
+  { name: "USDT (TRC-20)", addr: "TJE5TyJE7CLJ26G45a5x8BZSyDCqV2YpQq" },
+  { name: "ETH / USDC (ERC-20)", addr: "0x836950CEaDfe0A77d0B500F45e06f8A19303dAF6" },
+];
+---
+
+<Layout locale="en" title="Support HKP4 · Donate" nav="donate">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Support HKP4</h1>
+      <p class="sub">支持 HKP4 — 打賞與資助</p>
+    </div>
+
+    <div class="prose" style="max-width:44rem">
+      <p>
+        HKP4 has no institutional funding and no ads; every article stays free forever.
+        One piece — research, argument, then a full English translation — takes well over
+        ten hours. Your support is where those hours come from.
+      </p>
+
+      <h2>Option 1: Patreon membership (recommended)</h2>
+      <p>
+        <a href={site.patreon} target="_blank" rel="noopener noreferrer">{site.patreon}</a>
+        — from the price of a coffee per month, cancel anytime. Members read each issue
+        48 hours early and see the sources and reasoning behind it. Patreon requires
+        creators to verify their identity; it is the only step where you are not anonymous
+        to the platform (readers still only see the pen name).
+      </p>
+
+      <h2>Option 2: One-off crypto tip (fully anonymous)</h2>
+      <p>No personal data is collected; tips are irreversible, so check addresses carefully.</p>
+      <ul>
+        {crypto.map((c) => (
+          <li>
+            <strong>{c.name}</strong><br />
+            <code>{c.addr}</code>
+          </li>
+        ))}
+      </ul>
+      <p style="color:var(--ink-faint);font-size:0.85rem">
+        (Before launch, replace the placeholder addresses with your own wallet addresses
+        and verify each with a small test transfer.)
+      </p>
+    </div>
+  </div>
+</Layout>
